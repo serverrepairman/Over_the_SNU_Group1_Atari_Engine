@@ -1,18 +1,44 @@
-package MovingObject;
+package main;
 import java.util.ArrayList;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import main.*;
+
+import MovingObject.*;
 
 public abstract class Scene{
-	ArrayList<MovingObject> objects;
-	public Scene(){
+	public ArrayList<MovingObject> objects;
+	public Window root;
+	public Scene(Window root){
+		this.root = root;
 		objects = new ArrayList<MovingObject>();
 	}
-	public abstract void mousePressEvent();
-	public abstract void mouseMoveEvent();
-	public abstract void mouseReleaseEvent();
+    public void keyPressed(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {}
 	public void update() {
-		for(MovingObject object:this.objects) {
+		for(MovingObject object:objects) {
 			object.update();
+		}
+	}
+	public void updateCollision() {
+		for(int i=0;i<objects.size();i++) {
+			for(int j=0;j<i;j++) {
+				try {
+					objects.get(i).updateCollision(objects.get(j));
+				}catch(Exception e){
+					objects.get(j).updateCollision(objects.get(i));
+				}
+			}
+		}
+		for(MovingObject object:objects) {
+			object.updateCollision();
 		}
 	}
 	public void draw(Graphics g) {
@@ -20,5 +46,4 @@ public abstract class Scene{
 			object.draw(g);
 		}
 	}
-	public abstract void main(Graphics g);
 }

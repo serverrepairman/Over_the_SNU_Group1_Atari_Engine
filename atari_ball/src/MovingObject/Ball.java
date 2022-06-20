@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.Graphics.*;
 
 import main.GameView;
+import main.Scene;
 import utils.Vec;
 
 public class Ball extends MovingObject {
@@ -22,26 +23,28 @@ public class Ball extends MovingObject {
 	}
 	public boolean updateCollision() {
 		boolean checker = true;
-		if (GameView.SIZEX-radius<coordinate.x || radius>coordinate.x)
+		if (master.root.getWidth()-radius<coordinate.x || radius>coordinate.x)
 			velocity.x*=-1; checker = false;
-		if (GameView.SIZEY-radius<coordinate.y || radius>coordinate.y)
+		if (master.root.getHeight()-radius<coordinate.y || radius>coordinate.y)
+			velocity.y*=-1; checker = false;
+		return checker;
+	}
+	public boolean updateCollision(MovingObject object) {
+		if(object.getClass()==Block) {
+			this.updateCollision(object)
+		}
+		return true;
+	}
+	public boolean updateCollision(Block block) {
+		boolean checker = true;
+		if (master.root.getWidth()-radius<block.length.x+block.coordinate.x || radius>block.coordinate.x)
+			velocity.x*=-1; checker = false;
+		if (master.root.getHeight()-radius<block.length.y+block.coordinate.y || radius>block.coordinate.y)
 			velocity.y*=-1; checker = false;
 		return checker;
 	}
 	public void update() {
 		super.update();
-		updateCollision();
-		for(Block nowBlock:GameView.blocks) {
-			updateCollision(nowBlock);
-		}
-	}
-	public boolean updateCollision(Block block) {
-		boolean checker = true;
-		if (GameView.SIZEX-radius<block.length.x+block.coordinate.x || radius>block.coordinate.x)
-			velocity.x*=-1; checker = false;
-		if (GameView.SIZEY-radius<block.length.y+block.coordinate.y || radius>block.coordinate.y)
-			velocity.y*=-1; checker = false;
-		return checker;
 	}
 	public void draw(Graphics g) {
 		g.setColor(color);
