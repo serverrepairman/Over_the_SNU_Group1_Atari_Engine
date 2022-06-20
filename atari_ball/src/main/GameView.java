@@ -55,7 +55,7 @@ public class GameView extends Frame{
         update(g);
     }
 
-    public void update(Graphics g) {
+    public void update(Graphics  g) {
         buffG.clearRect(0, 0, 854, 480);
         stick.update();
         stick.draw(buffG);

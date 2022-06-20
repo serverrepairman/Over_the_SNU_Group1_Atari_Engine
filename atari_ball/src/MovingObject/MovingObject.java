@@ -25,5 +25,6 @@ public abstract class MovingObject {
 		coordinate = coordinate.add(velocity);
 	}
 	public abstract boolean updateCollision();
+	public abstract boolean updateCollision(MovingObject object);
 	public abstract void draw(Graphics g);
 }

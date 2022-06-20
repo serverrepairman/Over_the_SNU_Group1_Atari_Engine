@@ -8,26 +8,26 @@ import main.Scene;
 import utils.Vec;
 
 public class Block extends MovingObject{
-	Vec length;
+	Vec size;
 	Color color;
-	public Block(Scene master, Vec coordinate,Color color, Vec length) {
+	public Block(Scene master, Vec coordinate,Color color, Vec size) {
 		super(master,coordinate);
 		this.color=color;
-		this.length=length;
+		this.size=size;
 	}
-	public Block(Scene master, Vec coordinate, Vec velociy, Color color, Vec length) {
+	public Block(Scene master, Vec coordinate, Vec velociy, Color color, Vec size) {
 		super(master, coordinate, velociy);
 		this.color=color;
-		this.length=length;
+		this.size=size;
 	}
 	public boolean updateCollision() {
 		boolean checker = true;
-		if (GameView.SIZEX<coordinate.x+length.x)
-			coordinate.x = GameView.SIZEX-length.x; checker=false;
+		if (master.root.getWidth()<coordinate.x+size.x)
+			coordinate.x = GameView.SIZEX-size.x; checker=false;
 		if(coordinate.x<0)
 			coordinate.x=0;checker=false;
-		if (GameView.SIZEY<coordinate.y+length.y)
-			coordinate.y = GameView.SIZEY-length.y;checker=false;
+		if (master.root.getHeight()<coordinate.y+size.y)
+			coordinate.y = GameView.SIZEY-size.y;checker=false;
 		if(coordinate.y<0)
 			coordinate.y=0;checker=false;
 		return checker;
@@ -38,6 +38,6 @@ public class Block extends MovingObject{
 	}
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillRect((int)(coordinate.x),(int)(coordinate.y), (int)(length.x), (int)(length.y));
+		g.fillRect((int)(coordinate.x),(int)(coordinate.y), (int)(size.x), (int)(size.y));
 	}
 }
