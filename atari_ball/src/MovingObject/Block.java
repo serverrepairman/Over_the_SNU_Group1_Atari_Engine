@@ -3,7 +3,7 @@ package MovingObject;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import main.GameView;
+import main.Window;
 import main.Scene;
 import utils.Vec;
 
@@ -22,15 +22,21 @@ public class Block extends MovingObject{
 	}
 	public boolean updateCollision() {
 		boolean checker = true;
-		if (master.root.getWidth()<coordinate.x+size.x)
-			coordinate.x = GameView.SIZEX-size.x; checker=false;
-		if(coordinate.x<0)
-			coordinate.x=0;checker=false;
-		if (master.root.getHeight()<coordinate.y+size.y)
-			coordinate.y = GameView.SIZEY-size.y;checker=false;
-		if(coordinate.y<0)
-			coordinate.y=0;checker=false;
+		if (-master.root.getWidth()/2>coordinate.x-size.x/2)
+			coordinate.x = -master.root.getWidth()/2+size.x/2; checker=false;
+		if (master.root.getWidth()/2<coordinate.x+size.x/2)
+			coordinate.x = master.root.getWidth()/2-size.x/2; checker=false;
+		if (-master.root.getHeight()/2>coordinate.y-size.y/2)
+			coordinate.y = -master.root.getHeight()/2+size.y/2; checker=false;
+		if (master.root.getHeight()/2<coordinate.y+size.y/2)
+			coordinate.y = master.root.getHeight()/2-size.y/2; checker=false;
 		return checker;
+	}
+	public boolean updateCollision(MovingObject object) {
+		if(object.getClass().getName()=="MovingObject.Ball") {
+			object.updateCollision(this);
+		}
+		return true;
 	}
 	public void update() {
 		super.update();
@@ -38,6 +44,7 @@ public class Block extends MovingObject{
 	}
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillRect((int)(coordinate.x),(int)(coordinate.y), (int)(size.x), (int)(size.y));
+		Vec scr=master.root.pos2scr(coordinate).sub(size.div(2));
+		g.fillRect((int)(scr.x),(int)(scr.y), (int)(size.x), (int)(size.y));
 	}
 }

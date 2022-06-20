@@ -26,6 +26,8 @@ public abstract class Window extends JFrame{
 
     public Window(String title, Vec size){
     	
+    	scenes = new ArrayList<Scene>();
+    	
     	this.title = title;
         setTitle(title);
         
@@ -51,6 +53,7 @@ public abstract class Window extends JFrame{
     public void update(Graphics  g) {
         buffG.clearRect(0, 0, 854, 480);
         scenes.get(sceneNum).update();
+        scenes.get(sceneNum).draw(buffG);
         g.drawImage(buffImg,0,0,this);
         repaint();
     }

@@ -13,11 +13,12 @@ public abstract class MovingObject {
 	public Vec coordinate, velocity, a = new Vec(0,0);
 	public Scene master;
 	public MovingObject(Scene master, Vec coordinate) {
+		this.master = master;
 		this.coordinate = coordinate;
 		this.velocity = new Vec(0,0);
-		this.master = master;
 	}
 	public MovingObject(Scene master, Vec coordinate, Vec velocity) {
+		this.master = master;
 		this.coordinate = coordinate;
 		this.velocity = velocity;
 	}

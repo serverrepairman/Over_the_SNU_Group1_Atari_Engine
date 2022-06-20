@@ -23,23 +23,23 @@ public class Ball extends MovingObject {
 	}
 	public boolean updateCollision() {
 		boolean checker = true;
-		if (master.root.getWidth()-radius<coordinate.x || radius>coordinate.x)
+		if (-master.root.getWidth()/2>coordinate.x-radius || master.root.getWidth()/2<coordinate.x+radius)
 			velocity.x*=-1; checker = false;
-		if (master.root.getHeight()-radius<coordinate.y || radius>coordinate.y)
+		if (-master.root.getHeight()/2>coordinate.y-radius || master.root.getHeight()/2<coordinate.y+radius)
 			velocity.y*=-1; checker = false;
 		return checker;
 	}
 	public boolean updateCollision(MovingObject object) {
-		if(object.getClass()==Block) {
-			this.updateCollision(object)
+		if(object.getClass().getName()=="MovingObject.Block") {
+			this.updateCollision((Block)object);
 		}
 		return true;
 	}
 	public boolean updateCollision(Block block) {
 		boolean checker = true;
-		if (master.root.getWidth()-radius<block.length.x+block.coordinate.x || radius>block.coordinate.x)
+		if (master.root.getWidth()-radius<block.size.x+block.coordinate.x || radius>block.coordinate.x)
 			velocity.x*=-1; checker = false;
-		if (master.root.getHeight()-radius<block.length.y+block.coordinate.y || radius>block.coordinate.y)
+		if (master.root.getHeight()-radius<block.size.y+block.coordinate.y || radius>block.coordinate.y)
 			velocity.y*=-1; checker = false;
 		return checker;
 	}
@@ -48,6 +48,7 @@ public class Ball extends MovingObject {
 	}
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval((int)(coordinate.x),(int)(coordinate.y), 2*(int)radius, 2*(int)radius);
+		Vec scr=master.root.pos2scr(coordinate);
+		g.fillOval((int)(scr.x),(int)(scr.y), 2*(int)radius, 2*(int)radius);
 	}
 }

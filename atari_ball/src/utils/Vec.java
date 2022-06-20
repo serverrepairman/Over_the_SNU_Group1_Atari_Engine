@@ -10,8 +10,14 @@ public class Vec {
 	public Vec add(Vec b){
 		return new Vec(this.x+b.x,this.y+b.y);
 	}
+	public Vec sub(Vec b){
+		return new Vec(this.x-b.x,this.y-b.y);
+	}
 	public Vec mul(double b) {
 		return new Vec(this.x*b,this.y*b);
+	}
+	public Vec div(double b) {
+		return new Vec(this.x/b,this.y/b);
 	}
 	
 }

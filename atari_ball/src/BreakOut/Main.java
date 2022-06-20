@@ -20,7 +20,7 @@ public class Main extends Scene{
     	super(root);
     	this.root=root;
     	stick=new Block(this, root.scr2pos(new Vec(BLOCK_X, BLOCK_Y)),root.random_Color(), new Vec(BLOCK_WIDHT, BLOCK_HEIGHT));
-    	ball=new Ball(this, new Vec(BALL_X, BALL_Y), root.scr2pos(new Vec(BALL_VX,BALL_VY)), root.random_Color(), BALL_RADIUS);
+    	ball=new Ball(this, root.scr2pos(new Vec(BALL_X, BALL_Y)), root.scr2pos(new Vec(BALL_VX,BALL_VY)), root.random_Color(), BALL_RADIUS);
     	objects.add(stick);
     	objects.add(ball);
     }
@@ -34,10 +34,10 @@ public class Main extends Scene{
             	stick.velocity.x = VEL;
                 break;
             case 'w':
-            	stick.velocity.y = -VEL;
+            	stick.velocity.y = VEL;
                 break;
             case 's':
-            	stick.velocity.y = VEL;
+            	stick.velocity.y = -VEL;
                 break;
         }
     }

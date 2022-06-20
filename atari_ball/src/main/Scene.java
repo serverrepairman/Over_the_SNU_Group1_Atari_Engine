@@ -1,13 +1,10 @@
 package main;
 import java.util.ArrayList;
 import java.awt.Graphics;
-<<<<<<< HEAD
-=======
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import main.*;
 
->>>>>>> branch 'master' of https://github.com/serverrepairman/Over_the_SNU_Group1_Atari_Engine
 import MovingObject.*;
 
 public abstract class Scene{
