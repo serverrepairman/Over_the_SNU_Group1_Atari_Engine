@@ -8,12 +8,15 @@ import utils.Vec;
 
 public class Block extends MovingObject{
 	Vec length;
-	public Block(Vec coordinate, Color color, Vec length) {
-		super(coordinate, color);
+	Color color;
+	public Block(Scene master, Vec coordinate,Color color, Vec length) {
+		super(master,coordinate);
+		this.color=color;
 		this.length=length;
 	}
-	public Block(Vec coordinate, Vec velociy, Color color, Vec length) {
-		super(coordinate, velociy, color);
+	public Block(Scene master, Vec coordinate, Vec velociy, Color color, Vec length) {
+		super(master, coordinate, velociy);
+		this.color=color;
 		this.length=length;
 	}
 	public boolean updateCollision() {

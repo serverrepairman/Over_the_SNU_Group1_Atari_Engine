@@ -8,13 +8,16 @@ import utils.Vec;
 
 public class Ball extends MovingObject {
 	private double radius;
-	public Ball(Vec coordinate, Color color, double radius) {
-		super(coordinate, color);
+	public Color color;
+	public Ball(Scene master, Vec coordinate, Color color, double radius) {
+		super(master, coordinate);
+		this.color = color;
 		this.radius=radius;
 	}
-	public Ball(Vec coordinate, Vec velocity, Color color, double radius) {
-		super(coordinate, velocity, color);
+	public Ball(Scene master, Vec coordinate, Vec velocity, Color color, double radius) {
+		super(master, coordinate, velocity);
 		System.out.println(velocity);
+		this.color = color;
 		this.radius=radius;
 	}
 	public boolean updateCollision() {
