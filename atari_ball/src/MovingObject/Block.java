@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import main.GameView;
+import main.Scene;
 import utils.Vec;
 
 public class Block extends MovingObject{

@@ -1,6 +1,7 @@
-package MovingObject;
+package main;
 import java.util.ArrayList;
 import java.awt.Graphics;
+import MovingObject.*;
 
 public abstract class Scene{
 	ArrayList<MovingObject> objects;

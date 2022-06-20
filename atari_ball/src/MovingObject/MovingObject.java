@@ -4,6 +4,8 @@ import utils.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import main.Scene;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
