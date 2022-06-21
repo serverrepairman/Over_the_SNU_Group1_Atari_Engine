@@ -8,10 +8,10 @@ import main.*;
 import utils.Vec;
 
 public class Main extends Scene{
-    public static double VEL=0.1;
+    public static double VEL=0.6;
     public static int BLOCK_X=360, BLOCK_Y=235, BLOCK_WIDHT=80, BLOCK_HEIGHT=10;
-    public static int BALL_X=50, BALL_Y=50, BALL_RADIUS=5;
-    public static double BALL_VX=0.01, BALL_VY=0.02;
+    public static int BALL_X=0, BALL_Y=0, BALL_RADIUS=5;
+    public static double BALL_VX=0.2, BALL_VY=0.2;
     public Window root;
     public Block stick;
     public Ball ball;
@@ -20,7 +20,7 @@ public class Main extends Scene{
     	super(root);
     	this.root=root;
     	stick=new Block(this, root.scr2pos(new Vec(BLOCK_X, BLOCK_Y)),root.random_Color(), new Vec(BLOCK_WIDHT, BLOCK_HEIGHT));
-    	ball=new Ball(this, root.scr2pos(new Vec(BALL_X, BALL_Y)), root.scr2pos(new Vec(BALL_VX,BALL_VY)), root.random_Color(), BALL_RADIUS);
+    	ball=new Ball(this, new Vec(BALL_X,BALL_Y), new Vec(BALL_VX,BALL_VY), root.random_Color(), BALL_RADIUS);
     	objects.add(stick);
     	objects.add(ball);
     }
@@ -41,6 +41,7 @@ public class Main extends Scene{
                 break;
         }
     }
+	@Override
     public void keyReleased(KeyEvent e) {
         stick.velocity = new Vec(0, 0);
     }

@@ -34,7 +34,7 @@ public class Block extends MovingObject{
 	}
 	public boolean updateCollision(MovingObject object) {
 		if(object.getClass().getName()=="MovingObject.Ball") {
-			object.updateCollision(this);
+			return object.updateCollision(this);
 		}
 		return true;
 	}

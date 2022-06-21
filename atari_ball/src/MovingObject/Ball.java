@@ -22,6 +22,8 @@ public class Ball extends MovingObject {
 		this.radius = radius;
 	}
 	public boolean updateCollision() {
+		System.out.println(velocity.x);
+		System.out.println(velocity.y);
 		boolean checker = true;
 		if (-master.root.getWidth()/2>coordinate.x-radius || master.root.getWidth()/2<coordinate.x+radius)
 			velocity.x*=-1; checker = false;
@@ -31,15 +33,13 @@ public class Ball extends MovingObject {
 	}
 	public boolean updateCollision(MovingObject object) {
 		if(object.getClass().getName()=="MovingObject.Block") {
-			this.updateCollision((Block)object);
+			return this.updateCollision((Block)object);
 		}
 		return true;
 	}
 	public boolean updateCollision(Block block) {
 		boolean checker = true;
-		if (master.root.getWidth()-radius<block.size.x+block.coordinate.x || radius>block.coordinate.x)
-			velocity.x*=-1; checker = false;
-		if (master.root.getHeight()-radius<block.size.y+block.coordinate.y || radius>block.coordinate.y)
+		if (coordinate.x-radius<block.size.x+block.coordinate.x && coordinate.x+radius>block.coordinate.x && coordinate.y-radius<block.size.y+block.coordinate.y && coordinate.y+radius>block.coordinate.y)
 			velocity.y*=-1; checker = false;
 		return checker;
 	}

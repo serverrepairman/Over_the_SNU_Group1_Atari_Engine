@@ -26,10 +26,12 @@ public abstract class Scene{
 		for(MovingObject object:objects) {
 			object.update();
 		}
+		updateCollision();
 	}
 	public void updateCollision() {
 		for(int i=0;i<objects.size();i++) {
-			for(int j=0;j<i;j++) {
+			boolean checker=true;
+			for(int j=0;j<i;j++)if(checker) {
 				try {
 					objects.get(i).updateCollision(objects.get(j));
 				}catch(Exception e){
