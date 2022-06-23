@@ -3,7 +3,6 @@ package MovingObject;
 import java.awt.*;
 import java.awt.Graphics.*;
 
-import main.GameView;
 import main.Scene;
 import utils.Vec;
 
